@@ -48,7 +48,7 @@
                             </a>
                         </div>
                         <div class="p-2">
-                            <form method="POST" action="{{ route('register') }}" id="regester" class="needs-validation"
+                            <form method="POST" action="{{ route('register.custom') }}" id="regester" class="needs-validation"
                                 novalidate>
                                 @csrf
 
