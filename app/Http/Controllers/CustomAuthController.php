@@ -98,7 +98,9 @@ class CustomAuthController extends Controller
 
         Mail::to($email)->send(new VerificationEmail($validToken));
 
-        return redirect("verify/" . $check->id);
+        Auth::login($check);
+
+        return redirect("dashboard");
     }
 
     public function resendCode($id)
