@@ -384,6 +384,7 @@ class CustomAuthController extends Controller
             'account_type' => $data['account_type'],
             'currency' => $currencySymbol,
             'a_number' => $accountNumber,
+            'is_activated' => '1',
             'password' => Hash::make($data['password'])
         ]);
     }
