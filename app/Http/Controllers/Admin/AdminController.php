@@ -291,7 +291,7 @@ class AdminController extends Controller
 
         return view('admin.credit_user', $data);
     }
- 
+
     /**
      * Open a new account.
      *
@@ -754,6 +754,11 @@ class AdminController extends Controller
 
     public function credit(Request $request)
     {
+        // Strip commas from amount before validation
+        $request->merge([
+            'amount' => str_replace(',', '', $request->input('amount'))
+        ]);
+
         // Validate the incoming request data
         $request->validate([
             'user_id' => 'required|integer',
@@ -762,6 +767,8 @@ class AdminController extends Controller
             'description' => 'nullable|string',
             't_type' => 'required|string'
         ]);
+
+        $amount = $request->input('amount');
 
         // Generate a unique transaction ID and reference
         $transactionId = strtoupper(uniqid('TXN_'));
@@ -772,20 +779,18 @@ class AdminController extends Controller
             'user_id' => $request->user_id,
             'transaction_id' => $transactionId,
             'transaction_ref' => $transactionRef,
-            'transaction_type' => 'Credit', // From "Transfer Scope" dropdown
-            'transaction' => 'credit', // Since this is a credit transaction
-            'transaction_amount' => $request->merge([
-                'amount' => str_replace(',', '', $request->input('amount'))
-            ]), // Amount to be credited
-            'transaction_description' => $request->description, // Optional description
-            'transaction_status' => '1', // Default status can be 'pending', adjust as needed
-            'wallet_address' => null, // If wallet transfers are applicable, you can fill this
-            'wallet_type' => null, // Can be filled if relevant to your setup
-            'account_name' => null, // If related to bank transfers
-            'account_number' => null, // If related to bank transfers
-            'account_type' => null, // If related to bank transfers
-            'bank_name' => null, // If related to bank transfers
-            'routing_number' => null, // If related to bank transfers
+            'transaction_type' => 'Credit',
+            'transaction' => 'credit',
+            'transaction_amount' => $amount,
+            'transaction_description' => $request->description,
+            'transaction_status' => '1',
+            'wallet_address' => null,
+            'wallet_type' => null,
+            'account_name' => null,
+            'account_number' => null,
+            'account_type' => null,
+            'bank_name' => null,
+            'routing_number' => null,
         ]);
 
 
@@ -827,6 +832,11 @@ class AdminController extends Controller
 
     public function debit(Request $request)
     {
+        // Strip commas from amount before validation
+        $request->merge([
+            'amount' => str_replace(',', '', $request->input('amount'))
+        ]);
+
         // Validate the incoming request data
         $request->validate([
             'user_id' => 'required|integer',
@@ -835,6 +845,8 @@ class AdminController extends Controller
             'description' => 'nullable|string',
             't_type' => 'required|string'
         ]);
+
+        $amount = $request->input('amount');
 
         // Generate a unique transaction ID and reference
         $transactionId = strtoupper(uniqid('TXN_'));
@@ -845,20 +857,18 @@ class AdminController extends Controller
             'user_id' => $request->user_id,
             'transaction_id' => $transactionId,
             'transaction_ref' => $transactionRef,
-            'transaction_type' => 'Debit', // From "Transfer Scope" dropdown
-            'transaction' => 'debit', // Since this is a credit transaction
-            'transaction_amount' => $request->merge([
-                'amount' => str_replace(',', '', $request->input('amount'))
-            ]), // Amount to be credited
-            'transaction_description' => $request->description, // Optional description
-            'transaction_status' => '1', // Default status can be 'pending', adjust as needed
-            'wallet_address' => null, // If wallet transfers are applicable, you can fill this
-            'wallet_type' => null, // Can be filled if relevant to your setup
-            'account_name' => null, // If related to bank transfers
-            'account_number' => null, // If related to bank transfers
-            'account_type' => null, // If related to bank transfers
-            'bank_name' => null, // If related to bank transfers
-            'routing_number' => null, // If related to bank transfers
+            'transaction_type' => 'Debit',
+            'transaction' => 'debit',
+            'transaction_amount' => $amount,
+            'transaction_description' => $request->description,
+            'transaction_status' => '1',
+            'wallet_address' => null,
+            'wallet_type' => null,
+            'account_name' => null,
+            'account_number' => null,
+            'account_type' => null,
+            'bank_name' => null,
+            'routing_number' => null,
         ]);
 
 

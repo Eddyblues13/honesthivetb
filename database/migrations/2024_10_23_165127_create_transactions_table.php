@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('transaction')->nullable();
             $table->string('wallet_address')->nullable();
             $table->string('wallet_type')->nullable();
-            $table->string('transaction_amount', 11)->nullable();
+            $table->string('transaction_amount', 50)->nullable();
             $table->string('transaction_description');
             $table->tinyInteger('transaction_status')->default(0)->comment('0=pending, 1=approved');
             $table->string('account_name')->nullable();
