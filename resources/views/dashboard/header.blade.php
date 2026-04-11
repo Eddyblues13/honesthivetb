@@ -77,7 +77,7 @@
     <!-- Smartsupp Live Chat script -->
     <script type="text/javascript">
         var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'a32031170cef4293e7bdf2197c91cbf908e92bdd';
+_smartsupp.key = 'bb1aef0a2945133eb50037d5b2d0ae3829e349c6';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
   s=d.getElementsByTagName('script')[0];c=d.createElement('script');
@@ -85,7 +85,7 @@ window.smartsupp||(function(d) {
   c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
     </script>
-    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+    <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
 
 
 </head>
